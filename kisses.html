@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kisses Rain for Labi ❤️💋</title>
+
 <style>
 body, html {
   margin:0; padding:0; overflow:hidden;
@@ -13,7 +14,7 @@ body, html {
   position: relative;
 }
 
-/* Kiss rain elements */
+/* Kiss rain */
 .kiss {
   position: absolute;
   font-size: 1.5rem;
@@ -30,7 +31,8 @@ body, html {
 /* Letter box */
 #letterBox {
   position: absolute;
-  top:50%; left:50%;
+  top:50%;
+  left:50%;
   transform: translate(-50%,-50%);
   background: rgba(255,255,255,0.15);
   color: #fff;
@@ -38,9 +40,21 @@ body, html {
   border-radius: 20px;
   backdrop-filter: blur(8px);
   max-width: 400px;
+  width: 90%;
+  max-height: 70vh;      /* scrollable on mobile */
+  overflow-y: auto;
   text-align: center;
   display: none;
   z-index: 5;
+}
+
+/* scrollbar hide for mobile */
+#letterBox::-webkit-scrollbar {
+  width: 6px;
+}
+#letterBox::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.4);
+  border-radius: 10px;
 }
 
 #letterBox h2 {
@@ -73,7 +87,7 @@ button:hover {
   transform: scale(1.05);
 }
 
-/* Open Letter Button */
+/* Button positions */
 #openLetterBtn {
   position: absolute;
   bottom: 30px;
@@ -82,7 +96,6 @@ button:hover {
   z-index: 5;
 }
 
-/* New Page Button (hidden initially) */
 #newPageBtn {
   position: absolute;
   bottom: 80px;
@@ -90,30 +103,44 @@ button:hover {
   transform: translateX(-50%);
   z-index: 5;
   background: linear-gradient(90deg,#ff6fa0,#ffcbe5);
-  display: none;
+  display: none;   /* initially hidden */
+}
+
+/* Mobile tweaks */
+@media (max-width: 600px) {
+  #letterBox {
+    max-height: 60vh;
+    padding: 20px;
+  }
 }
 </style>
 </head>
+
 <body>
 
 <div id="letterBox">
-  <h2>MY DEAREST LABEEBAH  💖</h2>
+  <h2>MY DEAREST LABEEBAH 💖</h2>
   <p>
-  Happy 1st aniiversary my love one year ago we started something so special and today i'm grateful for every moment and every smile, every fight that made us stronger,and every memory we created together. you are not just my girl you are my eveyting love
-    <br> I can't promise a perfect life but i promise to always choose you and i love you <br>
-    
-    i love you more than word can say orrrrr mwahhhhhhhhhhhhhhhhhh💋💋💋<br>
- 
-    You are my everything
+    Happy 1st anniversary my love ❤️ one year ago we started something so special
+    and today i'm grateful for every moment, every smile, every fight that made us
+    stronger, and every memory we created together.<br><br>
+
+    You are not just my girl you are my everything love.<br><br>
+
+    I can't promise a perfect life but i promise to always choose you and i love you.<br><br>
+
+    i love you more than words can say orrrrr mwahhhhhhhhhhhhhhh 💋💋💋<br><br>
+
+    You are my everything 💖💖💖
   </p>
-  <button id="closeLetter">Close Letter ❌</button>
+  <button id="closeLetter"> tapp pls ❌</button>
 </div>
 
-<button id="newPageBtn">Open New Surprise Page 🌟</button>
+<button id="newPageBtn"> AB yha tap 🌟</button>
 <button id="openLetterBtn">Open Letter 💌</button>
 
 <script>
-// Generate kiss rain continuously
+// Kiss rain
 function createKiss() {
   const kiss = document.createElement('div');
   kiss.className = 'kiss';
@@ -122,14 +149,11 @@ function createKiss() {
   kiss.style.fontSize = (12 + Math.random()*24) + 'px';
   kiss.style.animationDuration = (4 + Math.random()*4) + 's';
   document.body.appendChild(kiss);
-
   setTimeout(() => kiss.remove(), parseFloat(kiss.style.animationDuration)*1000);
 }
-
-// Continuously create kisses
 setInterval(createKiss, 200);
 
-// Letter open/close functionality
+// Letter open/close logic
 const letterBox = document.getElementById('letterBox');
 const openBtn = document.getElementById('openLetterBtn');
 const closeBtn = document.getElementById('closeLetter');
@@ -137,18 +161,18 @@ const newPageBtn = document.getElementById('newPageBtn');
 
 openBtn.addEventListener('click', ()=>{
   letterBox.style.display='block';
-  newPageBtn.style.display='block'; // show new page button after opening letter
+  newPageBtn.style.display='none';  // hide while letter is open
 });
 
 closeBtn.addEventListener('click', ()=>{
   letterBox.style.display='none';
+  newPageBtn.style.display='block'; // show after closing letter
 });
 
-// New Page Button functionality
 newPageBtn.addEventListener('click', ()=>{
-  window.open('new-page.html', '_blank'); // replace with your new page URL
+  window.open('new-page.html', '_blank');
 });
 </script>
+
 </body>
 </html>
-
